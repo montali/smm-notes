@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{parskip}
+\usepackage{graphicx}
+
+\newcommand{\set}[1]{\mathbb{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathrm{#1}}
+\newcommand{\diag}[1]{\mathrm{diag}(#1)}
+\newcommand{\transp}[1]{\mat{#1}^T}
+\newcommand{\inv}[1]{\mat{#1}^{-1}}
+\newcommand{\rank}[1]{\mathrm{rank}(\mat{#1})}
+\renewcommand{\det}{\mathrm{det}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\norm}[1]{||#1||}
+\newcommand{\sign}[1]{\mathrm{sign}(#1)}
+
+\renewcommand\labelitemi{--}
+https://www.overleaf.com/project/5f60c5c944a6da000183463e
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{property}{Property}[section]
+
+\everymath{\displaystyle}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{Lecture Notes in \\ Statistical and Mathematical Methods for Artificial Intelligence \\ 91255}
+\author{ Elena Loli Piccolomini\\ \href{mailto:elena.loli@unibo.it}{elena.loli@unibo.it}}
+\date{Academic Year 2020/2021 \\~\\ Last updated: September 2020}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\maketitle
+\begin{center}
+    \large{Thanks to: Giorgio Renzi\\~\\Lorenzo Mario Amorosa\\Lucia La Forgia\\Giacomo Pinardi\\~\\for the help provided}
+    % If they want their emails added
+    % (\href{mailto:lorenzomario.amorosa@studio.unibo.it}{lorenzomario.amorosa@studio.unibo.it}})
+    % (\href{mailto:lucia.laforgia@studio.unibo.it}{lucia.laforgia@studio.unibo.it}})
+    % (\href{mailto:giacomo.pinardi@studio.unibo.it}{giacomo.pinardi@studio.unibo.it}})
+\end{center}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+%\addcontentsline{toc}{section}{Notation}
+%\section*{Notation}
+%\input{sections/notation.tex}
+
+\section{Numerical Computation and Finite Numbers}
+\input{1-numerical-computation-and-finite-numbers.tex}
+
+\section{Linear Algebra basics for AI}
+\input{2-linear-algebra-basics-for-ai}
+
+\section{Matrix decompositions \label{sec:matdecomp}}
+ \input{matrixdecompositions.tex}
+
+ \section{Linear systems \label{sec:syslin}}
+ \input{linearsystems.tex}
+
+
+%  \section{Multivariate Calculus}
+%  \input{sections/multivariate-calculus.tex}
+
+%  \section{Numerical optimization}
+%  \input{sections/numerical-optimization.tex}
+ 
+
+%  \section{Probability and Statistics}
+%  \input{sections/probability-and-statistics.tex}
+
+
+\end{document}

@@ -1,0 +1,20 @@
+\begin{example}
+    \renewcommand*{\arraystretch}{1.5}
+    Let
+    $$
+        \mat{A} = \left[\begin{matrix}
+        1 & 2 & 0 & 0 \\
+        3 & 4 & 1 & 0 \\
+        -1 & 3 & 0 & -2 \\
+        0 & -2 & -2 & 3
+        \end{matrix}\right]
+    $$
+    Let's compute the determinant of $\mat{A}$ with Laplace's rule, fixing $i = 1$ ($|\cdot|$ denotes the determinant)
+    $$
+        \det{(\mat{A})} = 1 \cdot \left\vert\begin{matrix}4 & 1 & 0 \\ 3 & 0 & -2 \\ -2 & -2 & 3\end{matrix}\right\vert \cdot 1 + (-1) \cdot \left\vert\begin{matrix}3 & 1 & 0 \\ -1 & 0 & -2 \\ 0 & -2 & 3\end{matrix}\right\vert \cdot 2 +
+    $$
+    $$
+        + 1 \cdot \left\vert\begin{matrix}3 & 4 & 0 \\ -1 & 3 & -2 \\ 0 & -2 & 3\end{matrix}\right\vert \cdot 0 + (-1) \cdot \left\vert\begin{matrix}3 & 4 & 1 \\ -1 & 3 & 0 \\ 0 & -2 & -2\end{matrix}\right\vert \cdot 0 =
+    $$
+    $$ = -21 + 18 + 0 + 0 = -3 $$
+\end{example}

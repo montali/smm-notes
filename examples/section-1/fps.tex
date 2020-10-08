@@ -1,0 +1,15 @@
+\begin{example}
+    The layout of a 32-bit floating point number
+    
+    $$ 0\ 01111100\ 01000000000000000000000 = 0.15625 $$
+    
+    We have:
+    \begin{itemize}
+        \item $\textrm{sign} = 0$ (i.e. it's a positive number)
+        \item $e = -127 + 124 = -3$
+        \item $m = 101000000000000000000000$ (including the hidden bit)
+    \end{itemize}
+    
+    We can convert from basis $\beta=2$ to basis $\beta=10$  in the following way:
+    $$ (1.01)_2 \cdot 2^{-3} = (1 \cdot 2^{0} + 0 \cdot 2^{-1} + 1 \cdot 2^{-2}) \cdot 2^{-3} = 0.15625 $$
+\end{example}

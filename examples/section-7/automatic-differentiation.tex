@@ -1,0 +1,40 @@
+\begin{example}
+    Consider the function
+    $$
+        \begin{aligned}
+            z &= f(x_1, x_2) =\\
+            &= x_1x_2 + \sin{(x_1)} =\\
+            &= w_1w_2 + \sin{(w_1)} =\\
+            &= w_3 + w_4 =\\
+            &= w_5
+        \end{aligned}
+    $$
+    \textbf{Forward mode automatic differentiation} We want to compute the gradient of $z$ using forward mode automatic differentiation. We will have to perform two sweeps over the computational graph since we need to differentiate with respect to both $x_1$ and $x_2$. The choice of the independent variable to which differentiation is performed affects the seed values, which are
+    $$ \frac{dw_1}{dx_1} = 1,\ \ \frac{dw_2}{dx_1} = 0 $$
+    if we differentiate with respect to $x_1$, and
+    $$ \frac{dw_1}{dx_2} = 0,\ \ \frac{dw_2}{dx_2} = 1 $$
+    if we differentiate with respect to $x_2$
+    With the seed values set, the values propagate as follows (choosing $x_1$ as independent variable):
+    $$
+        \begin{aligned}
+            \frac{dw_1}{dx_1} &= 1\\
+            \frac{dw_2}{dx_1} &= 0\\
+            \frac{dw_3}{dx_1} &= \frac{dw_1}{dx_1}w_2 + w_1\frac{dw_2}{dx_1} = w_2\\
+            \frac{dw_4}{dx_1} &= \frac{dw_4}{dw_1} \cdot \frac{dw_1}{dx_1} = \cos{(w_1)} \cdot 1 = \cos{(w_1)}\\
+            \frac{dw_5}{dx_1} &= \frac{dw_3}{dx_1} + \frac{dw_4}{dx_1} = w_2 + \cos{(w_1)}\\
+        \end{aligned}
+    $$
+\end{example}
+
+\textbf{Reverse mode automatic differentiation} In reverse mode automatic differentiation, the dependent variable to be differentiated is fixed and the derivative is computed with respect to each sub-expression recursively. This means that our seed is
+$$ \frac{dz}{dw_5} = 1 $$
+and the operations are computed as follows:
+$$
+    \begin{aligned}
+        \frac{dz}{dw_5} &= 1\\
+        \frac{dz}{dw_4} &= \frac{dz}{dw_5} \cdot \frac{dw_5}{dw_4} = 1 \cdot 1 = 1\\
+        \frac{dz}{dw_3} &= \frac{dz}{dw_5} \cdot \frac{dw_5}{dw_3} = 1 \cdot 1 = 1\\
+        \frac{dz}{dw_2} &= \frac{dz}{dw_3} \cdot \frac{dw_3}{dw_2} = 1 \cdot w_1 = w_1\\
+        \frac{dz}{dw_1} &= \frac{dz}{dw_3} \cdot \frac{dw_3}{dw_1} + \frac{dz}{dw_4} \cdot \frac{dw_4}{dw_1} = 1 \cdot w_2 + 1 \cdot \cos{(w_1)} = w_2 + \cos{(w_1)}\\
+    \end{aligned}
+$$

@@ -1,0 +1,323 @@
+The objective of probability is to quantify the uncertainty: in the data, in the results, in the ML model...
+Hence we introduce the concepts of random variable and probability distribution.
+In ML probability is often used to formalize the design of automated reasoning systems.
+Moreover, in ML we are interested in generalizing the errors produced by our algorithm. Really, we do not know how the algorithm will perform on new data. This analysis involves both probability, which captures the uncertainty by random variables, and statistics, which uses probability to infer on the unknown behaviour of events.
+
+In ML there are two main interpretations of probability: the \textit{Bayesian} interpretation and the \textit{frequentist} interpretation.
+
+Dear The Bayesian interpretation is also called \textit{subjective probability} because it is used to quantify the degree of uncertainty that the user has about an event (Bishop, Pattern Recognition and Machine Learning, 2006).\\
+The frequentist interpretation considers the frequency of events of interest with respect to the total number of events occurred.
+
+\subsection{Basics of probability}
+
+\begin{definition}
+    A \textit{random experiment} is an experiment whose outcome is determined by chance (e.g. roll of a die).
+\end{definition}
+
+\begin{definition}
+    The \textit{sample space} is the set of all possible results of a random experiment.
+\end{definition}
+
+Examples. Toss of a coin, roll of a die, drawing a card form a deck  or extraction of ball from an urn.
+
+\begin{definition}
+    An \textit{event} is a collection of results. It is also defined as a subset of the sample space.
+\end{definition}
+
+Examples of events.
+
+\begin{definition}
+    The \textit{space of the events} $S(A)$ is the set of all the possible events.
+\end{definition}
+
+\begin{definition}
+    The \textit{probability of an event $A$} is a function $P: S(A) \rightarrow [0,1] \in \set{R}$ that associates each event $A$ to a number called probability of $A$.
+\end{definition}
+
+\begin{proposition}
+    Each probability function $P$ satisfies:
+    
+    \begin{itemize}
+        \item $P(A) \geq 0$
+        \item $P(S) = 1$
+        \item if $A_1, A_2, \hdots, A_n$ are disjoint events ($A_1 \cap A_2 \cap \hdots \cap A_n = \emptyset$) then
+        $$ P(A_1 \cup A_2 \cup \hdots \cup A_n) = \sum_{i=1}^{n}{P(A_i)} $$
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}
+    The \textit{conditional probability} of an event $B$ given the event $A$ is defined as
+    $$ P(B \mid A) = \frac{P(A \cup B)}{P(A)} $$
+\end{definition}
+
+Example. Suppose to toss a coin three times. Consider the events:
+$A\{ two crosses C occur\}$, $B=\{one head H and one cross C occur \}$. Compute $P(A|B)$ and $P(B|A)$.
+
+\begin{proposition}
+    For any fixed $A$, with $P(A) > 0$:
+    
+    \begin{itemize}
+        \item $P(B \mid A) \geq 0, \forall B \subset S$
+        \item $P(S \mid A) = 1$
+        \item $B_1, B2, \hdots, B_n$ disjoint events
+        $$ P\left(\bigcup_{i = 1}^{n}{B_i} \mid A\right) = \sum_{i=1}^{n}P(B_i \mid A) $$
+        \item $\forall A_1, A_2, \hdots, A_n$ events:
+        $$ P(A_1 \cap \hdots \cap A_n) = P(A) \cdot P(A_2 \mid A_1) \cdot \hdots \cdot P(A_n \mid A_1 \cap \hdots \cap A_{n-1}) $$
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}
+    Two events $A$ and $B$ are \textit{independent} iff
+    $$ P(A \cap B) = P(A) \cdot P(B) $$
+    Two events which are not independent are called \textit{dependent}.
+\end{definition}
+
+\begin{theorem}
+    Given $A, B$ disjoint events, $A \cup B = S$, we have that
+    $$ P(B \mid A) = \frac{P(A \mid B)P(B)}{P(A)} $$
+    The theorem can be extended to multiple events $B_1, \hdots, B_n$ pairwise disjoint ($B_i \cap B_j = \emptyset,\ \forall i \neq j$) and exhaustive ($B_1 \cup \hdots \cup B_n = S$)
+    $$ P(B_i \mid A) = \frac{P(A \mid B_i)P(B_i)}{\sum_{i=j}^{n}{P(A \mid B_j)P(B_j)}} $$
+\end{theorem}
+
+\subsection{Random variables}
+The \textit{random variables} associates events to numbers. In this way we can mathematically describes the probability
+of events occurring.
+\begin{definition}
+    A \textit{random variable} is a function $X: S \rightarrow \set{R}$ that associates each outcome $w \in S$ to a number $x \in \set{R}$
+    $$ X(w) = x $$
+\end{definition}
+
+\begin{definition}
+    The set of all the possible values of a random variable $X$ is called \textit{target space or support of $X$}, $S_X$.
+\end{definition}
+
+Examples. 
+\begin{enumerate}
+\item Toss a coin twice. The sample space is $S=\{HH, CH, HC, CC\}$. Consider the random variable $X=\{number of C\}$. Determine the values of X and its target space.
+\item  Repeat the Roll of a die  until you get 6. Consider the random variable $Y=\{ number of rolls \}$.
+Determine the values of Y and its target space.
+\item Monitor the arrival of a client in a bank. Consider $Z=\{ Time before the arrival of the client \}$.Determine the values of Z and its target space.
+
+\end{enumerate}
+
+If the target space (support) (case of X and Y) is a countable set then the random variable is called \textit{discrete}.
+
+If the target space (support) (case of Z) is a non countable set then the random variable is called \textit{continuous}.
+
+Associated to the random variables we have  probability functions which describe how the probability of events id distributed. We call \textit{univariate} distribution when we consider the distribution of  a single random variable and \textit{multivariate} distribution when we have more than one random variable.
+
+\subsubsection{Discrete random variables and probability mass function}
+
+Each discrete random variable has a function associated to itself, called \textit{probability mass function} (PMF) which describes the probability mapping between the event and the probability of outcome of the random variable.
+
+$$ p_X: S_X \rightarrow [0,1] \in \set{R} $$
+such that
+$$ p_X(x) = P(X = x),\ x \in S_X $$
+and
+$$ \sum_{x \in S_X}{f_X(x)} = 1 $$
+
+\begin{definition}
+    The \textit{expectation} of a discrete random variable is defined as
+    $$ \mu = \mathbb{E}[X] = \sum_{x \in S_X}{xf_X(x)} $$
+\end{definition}
+
+The expectation of a function $g(X)$ is defined as
+$$ \mathbb{E}[g(X)] = \sum_{x \in S_X}{g(x)p_X(x)} $$
+
+\begin{definition}
+    The \textit{variance} of a discrete random variable is defined as
+    $$ \sigma^2 = \mathbb{E}[(X - \mu)^2] = \sum_{x \in S_X}{(x - \mu)^2p_X(x)} = \mathbb{E}[X^2] - \mathbb{E}^2[X] $$
+\end{definition}
+
+Some examples of probability mass function are:
+
+\begin{itemize}
+    \item the \textit{discrete uniform distribution} (n is the dimension of the support)
+    $$ p_X(x) = \frac{1}{n} $$
+    \item the \textit{Poisson distribution}
+    $$ p_X(x) = e^{-\lambda}\frac{\lambda^x}{x!} $$
+    which has $\mu = \lambda$ and $\sigma^2 = \lambda$
+\end{itemize}
+
+\textbf{Multivariate discrete distributions}
+
+While in the univariate case, the target space of a RV (random variable) is associated with a vector, in the multivariate case it is defined as the cartesian product of the single target spaces, hence fills a multidimensional array.
+For example, in the case of bivariate RV, the target space $S_{XY}=S_X \times S_Y$, hence it fills a matrix.
+
+\begin{definition}
+    The \textit{joint probability mass function} of $X$ and $Y$ is defined as
+    $$ p_{XY} = P(X = x_i, Y = y_j)=\frac{a_{ij}}{N},\ (x, y) \in S_{XY} $$
+    where $a_{ij}$ is the element of the matrix storing all he possible values of X and Y, N is the total number of matrix elements (events). 
+\end{definition}
+
+We also write $f_{XY}$ as $p(x,y)$.
+\begin{definition}
+    Given $p_{XY}$ joint probability mass function of $X$ and $Y$ we define the \textit{marginal probability distribution} of $X$ as
+    $$ p_X(x) = \sum_{y \in S_Y}{P(X = x, Y = y)} $$
+    and the \textit{marginal probability distribution} of $Y$ as
+    $$ p_Y(y) = \sum_{x \in S_X}{P(X = x, Y = y)} $$
+\end{definition}
+
+We observe that the marginal probability consider only one  RV at a time.
+
+Example 6.2 MML
+
+\subsubsection{Continuous random variables}
+
+Each continuous  random variable has a function associated to itself, called \textit{probability density function} (PDF) $p(x)$ satisfying:
+$$ P(a \leq X \leq b) = \int_{a}^{b}{p_X(x)dx},\ \forall[a, b] \in S_X $$
+and 
+$$\int_a^b p(x)dx=1$$
+
+%\begin{definition}
+%    The \textit{expectation} of a continuous random variable is defined as
+%    $$ \mu = \mathbb{E}[X] = \int_{x \in S_X}{x p_X(x)} $$
+%\end{definition}
+
+%The expectation of a function $g(X)$ is defined as
+%$$ \mathbb{E}[g(X)] = \int_{x \in S_X}{g(x)p_X(x)} $$
+
+%\begin{definition}
+%    The \textit{variance} of a continuous random variable is defined as
+ %   $$ \sigma^2 = \mathbb{E}[(X - \mu)^2] = \int_{x \in S_X}{(x - \mu)^2f_X(x)} = \mathbb{E}[X^2] - \mathbb{E}^2[X] $$
+%\end{definition}
+
+Some examples of probability density  functions (PDF) are:
+
+\begin{itemize}
+    \item the \textit{normal distribution} (or \textit{Gaussian distribution})
+    $$ p_X(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp{\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)} $$
+    with expectation $\mu$ and standard deviation $\sigma$. The \textit{standard normal distribution} is defined with parameters $\mu = 0$ and $\sigma = 1$.
+    \item the \textit{exponential distribution}
+    $$ p_X(x) = \lambda e^{-\lambda x} $$
+    which has mean $\mu = \frac{1}{\lambda}$ and standard deviation $\sigma = \frac{1}{\lambda}$
+\end{itemize}
+
+
+\subsection{Bayes' theorem}
+
+\begin{definition}
+   Given X and Y rv, let  consider the instances $X=x$. We define \textit{conditional probability of y given x} and we write $p(y|x)$ the fraction of instances for which $Y=y$.
+\end{definition}
+
+\textbf{SUM rule.}
+
+WE show the sum rule for  discrete rv. In the case of continuous rv the sum is substituted by the  integral.
+
+\begin{proposition}
+Let $x$ and $y$ be discrete rv. Then:
+$$p(x)= \sum_{y \in Y} p(x,y)$$
+\end{proposition}
+
+It is called also \textit{marginalization property} since it involves marginal distribution and joint distribution. The marginal distribution of one rv is the sum on the events on the other rv. If we have more than two rv, we can apply the sum rule to all the subsets of the random variable. For example if we have a set $x=(x_1, \ldots x_n)$ of rv, 
+$$p(x_i)=\sum_{y \in (x1, \ldots x_{i-1}, x{i+1}, \ldots x_n)} p(x_1, \ldots x_n)$$
+
+\textbf{Product rule}
+
+\begin{proposition}
+Let $x$ and $y$ be discrete rv. Then:
+$$p(x,y) =p(y|x)p(x)$$
+\end{proposition}
+
+It relates the joint distribution and the conditional distribution by showing that a joint distribution can be written as the product of a marginal distribution by a conditional distribution.
+Obviuosly we can interchange $x$ and $y$.
+
+We finally state the Bayes' Theorem.
+
+Suppose we have prior on an unobserved variable $\xx$ and we have a relationship between $x$ and another rv $y$, which is observed.
+\begin{proposition}
+    Let $x$ and $y$ be discrete rv.
+    Then:
+    $$p(x|y)=\frac{p(y|x)p(x)}{p(y)}$$
+    where $p(x|y)$ is called \textit{posterior}, $p(y|x)$ is the \textit{likelihood}, $p(x)$ is the \textit{prior} and $p(y)$ is the \textit{evidence}.
+    \end{proposition}
+    \begin{proof}
+    For the product rule we have:
+$$p(x,y) =p(x|y)p(y)$$
+and
+$$p(x,y) =p(x|y)p(y)$$
+Hence:
+$$p(x,y) =p(y|x)p(x)=p(x|y)p(y)$$
+From which we can derive the thesis.
+\end{proof}
+What's the meaning of the terms involved in the Bayes' theorem?
+
+\begin{itemize}
+    \item The \textbf{prior} represents knowledge about the discrete probability distribution of $x$, which is the latent variable we want to discern about. The choice of the prior depends on the information we can know about $x$ a priori.
+    \item The \textbf{likelihood} is the probability of the observed rv $y$ given $x$. It is a distribution in $y$. We usually call it \textit{the probability of y given x}.
+    \item The \textbf{posterior} is what we want to know in the Bayesian statistic. It represents what we know of $x$ having observed $y$.
+    \item The \textbf{evidence} is the known probability of the observed  $y$.
+\end{itemize}
+
+As we said, we are interested in the posterior. But often is very difficult to know exactly the posterior, hence we consider only some statistic of the posterior, such as its mean or maximum. This causes loss of information. Some ML algorithms aim at finding the posterior distribution.
+
+% \subsection{Statistics}
+
+% We call \textit{statistic} an   index related to a rv we can measure from a sample of the rv. Examples are the mean, the variance, the standard deviation, the correlation ...
+
+% We first introduce the \textit{expected value} of a function $g(x)$ of a univariate discrete rv X with probability density function $p(x)$ as:
+%   $$\mathbb{E}[g(x)]=\sum_{x \in S_X} g(x)p(x)dx$$
+%   where $S_X$ is the target space of the rv X.
+  
+%   If we consider a multivariate random variables $X=(X_1, \ldots X_n)$ the expected value is a vector containing as elements the expected values with respect to the single rv $X_i, i=1, \ldots n$.
+  
+%   \begin{definition} 
+%   The \textit{mean} of a univariate rv X with states $(x_1, \ldots x_m)$ is an average defined as:
+%   $$=\sum_{x_i \in S_X}x_i p(x_d=x_i)$$
+%   \end{definition}
+  
+%   Let $\mu_X=\mathbb{E}[X](\xx)$ and $\mu_Y=\mathbb{E}[Y](\yy)$.
+% \begin{definition}
+%     We define the \textit{covariance} between two random variables $X$ and $Y$ as
+%     $$ \text{Cov}_{XY}[x, y] = \mathbb{E}[(x - \mu_X)(y - \mu_Y)] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] $$
+% \end{definition}
+
+% We have $\text{Cov}_{XX}(x, y) = \mathbb{E}[xy]-\mathbb{E}[x]\mathbb{E}[y]$
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{definition}
+%     We define the \textit{correlation} between two random variables $X$ and $Y$ as
+%     $$ \text{Corr}_{XY}(X, Y) = \frac{\text{Cov}_{XY}(X, Y)}{\sigma_X\sigma_Y} $$
+% \end{definition}
+
+% If $X \in \set{R}^m,\ X = (X_1, X_2, \hdots, X_m)$ and $Y \in \set{R}^n,\ Y = (Y_1, Y_2, \hdots, Y_n)$ we have that $\text{Cov}(X, Y)$ and $\text{Corr}(X, Y)$ are matrices of size $m \times n$ such that
+% $$ (\text{Cov}(X, Y))_{ij} = \text{Cov}(X_i, Y_j) $$
+% $$ (\text{Corr}(X, Y))_{ij} = \text{Corr}(X_i, Y_j) $$
+
+% If $X \in \set{R}^n,\ X = (X_1, X_2, \hdots, X_n)$ we have that $\text{Cov}(X, X)$ is a symmetric positive definite matrix of size $n \times n$ whose diagonal terms are $\sigma^2_{X_i}$
+
+% \begin{proposition}
+%     If $X$ and $Y$ are two independent random variables then
+%     $$ \text{Cov}(X, Y) = 0,\ \text{Corr}(X, Y) = 0 $$
+% \end{proposition}
+
+% \subsection{Inferential statistics}
+% Inferential statistics tries to deduce underlying properties of the distribution of a population from which a sample is observed. The set of assumptions is called \textit{statistical model} and the assumed probability distribution is usually parametrized. These parameters are then estimated to fit the observed data as well as possible.
+
+% We will study two methods to estimate the parameters of the assumed probability distribution:
+
+% \begin{itemize}
+%     \item \textit{maximum likelihood estimation} (MLE)
+%     \item \textit{maximum a posteriori estimation} (MAP)
+% \end{itemize}
+
+% \subsubsection{Maximum likelihood estimation}
+% The goal of maximum likelihood estimation is to maximize the likelihood of the observed data with respect to the parameters
+% $$ L(\theta \mid x) = f_{X}(x \mid \theta) $$
+% Here $f_{X}(x \mid \theta)$ is viewed as a function of the parameter $\theta$ with $x$ fixed. This should not be seen as the probability that the parameters $\theta$ are the right ones, given the observed data.
+
+% Thus, the method of maximum likelihood estimation estimates $\theta$ as
+% $$ \hat\lambda_{MLE}(x) = \argmax_{\lambda}\{{L(\theta \mid x)}\} = \argmin_{\lambda}\{{-\ln{L(\theta \mid x)}}\} $$
+
+% \input{examples/section-8/maximum-likelihood-estimation}
+
+% \subsubsection{Maximum a posteriori estimation}
+
+% Assume that we want to estimate an unobserved parameter $\theta$ on the basis of observations $x$. Let $f$ be the sampling distribution of $x$, so that $f_{X}(x \mid \theta)$ is the probability of $x$ when the underlying population parameter is $\theta$. Then the function
+% $$ \mathcal{L}(\theta \mid x) = f_{X}(x \mid \theta) $$
+% is known as likelihood function. Now suppose that a prior distribution $f_{\theta}(\theta)$ exists. This allows us to treat $\theta$ as a random variable. We can calculate the posterior distribution of $\theta$ using Bayes' theorem:
+% $$ f(\theta \mid x) = \frac{f_{X}(x \mid \theta)f_{\theta}(\theta)}{f_{X}(x)} $$
+% Maximum a posteriori estimation estimates $\theta$ as
+% $$ \hat\theta_{MAP}(x) = \argmax_{\theta}\{f_{X}(x \mid \theta)f_{\theta}(\theta)\} $$
+% Note that the evidence $f_{X}(x)$ is positive and does not depend on $\theta$, so it does not play any role in the optimization.

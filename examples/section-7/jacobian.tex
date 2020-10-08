@@ -1,0 +1,23 @@
+\begin{example}
+    Let $F: \set{R}^3 \rightarrow \set{R}^2$ and $G: \set{R}^2 \rightarrow \set{R}^2$ defined as follows:
+    $$ F(u, v, w) = (u + v, e^w)\ \ \forall(u, v, w) \in \set{R}^3 $$
+    $$ G(x, y) = (y - x, \sin{(2 \pi x)})\ \ \forall(x, y) \in \set{R}^2 $$
+    The Jacobian matrix of the composition $G \circ F$ is
+    $$ \mat{J}_{G \circ F}(u, v, w) = \mat{J}_G(F(u, v, w)) \cdot \mat{J}_F(u, v, w) = $$
+    $$
+        = \left.\begin{bmatrix}
+            -1 & 1\\
+            2\pi\cos{(2 \pi x)} & 0
+        \end{bmatrix}\right|_{x = u + v, y = e^w}
+        \begin{bmatrix}
+            1 & 1 & 0\\
+            0 & 0 & e^w
+        \end{bmatrix} =
+    $$
+    $$
+        = \begin{bmatrix}
+            -1 & -1 & e^w\\
+            2\pi\cos(2\pi(u+v)) & 2\pi\cos(2\pi(u+v)) & 0
+        \end{bmatrix}
+    $$
+\end{example}

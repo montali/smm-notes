@@ -1,0 +1,116 @@
+Without going into details, we define \textit{numerical method} a mathematical tool which can be implemented on a computer and designed to solve numerical problems. The implementation of a numerical method is called a \textit{numerical algorithm}, or simply \textit{algorithm}.
+
+When working with numerical methods and algorithms  we go through  approximations and errors which we can classify in the following way:
+
+\begin{itemize}
+    \item \textit{measure errors}, caused by the measuring instrument;
+    \item \textit{algorithmic errors}, caused by the propagation of rounding errors of each operation when the algorithm is executed on a computer;
+    \item \textit{truncation errors}, caused by the truncation of an infinite procedure to a finite one (e.g. the approximation of an infinite series with a finite sum);
+    \item \textit{inherent errors}, caused by the finite representation of the data of a problem.
+\end{itemize}
+
+How can we measure the whole error produced by the algorithm execution?
+
+\begin{definition}
+    Let $\tilde{x}$ be an approximation of a datum $x$. We define the \textit{absolute error} as
+    $$ E_x = |x - \tilde{x}| $$
+    and the \textit{relative error} as
+    $$ R_x = \left| \frac{x - \tilde{x}}{x} \right|,\ x \neq 0 $$
+\end{definition}
+
+
+\begin{definition}
+    \textit{Accuracy} is the number of correct significant digits in approximating some quantity. Accuracy means that the errors are small relative to a fixed tolerance. This quantity is not limited by the machine \textit{precision}, which is the number of digits a number is expressed with.
+\end{definition}
+
+\begin{definition}
+    The number $\tilde{x}$ is said to approximate $x$ to $d$ significant digits if $d$ is the largest non-negative integer such that
+    $$ \left| \frac{x - \tilde{x}}{x} \right| < \frac{10^{1-d}}{2} $$
+\end{definition}
+
+\input{examples/section-1/approx-significant-digits.tex}
+
+Suppose we want to compute the value of a function $f: \set{R} \rightarrow \set{R}$, where:
+
+\begin{itemize}
+    \item $x$ is the true input value
+    \item $f(x)$ is the desired (true) output
+    \item $\tilde{x}$ is the approximate input
+    \item $\tilde{f}$ is the approximate computed function
+\end{itemize}
+
+Then we define the \textit{total error} as
+$$ \tilde{f}(\tilde{x}) - f(x) = \tilde{f}(\tilde{x}) - f(\tilde{x}) + f(\tilde{x}) - f(x) $$
+We call $\tilde{f}(\tilde{x}) - f(\tilde{x})$ the \textit{algorithmic error} and $f(\tilde{x}) - f(x)$ the \textit{inherent  error}. It can be seen that the choice of algorithm has no effect on the propagated data error.
+
+% In light of this new perspective, we can define the truncation and rounding errors.
+
+% \begin{definition}
+%     The \textit{truncation error} is the difference between the true result (for the actual input) and the result produced by the given algorithm using exact arithmetic. The \textit{rounding error} is the difference between the result produced by the given algorithm using exact arithmetic and the result given by the same algorithm using limited precision arithmetic (due to inexact representation of real numbers and operations upon them).
+% \end{definition}
+
+% The \textit{computational error} is a sum of these two errors (one generally prevails over the other).
+
+\subsection{Machine representation of number}
+
+Let $\beta \in \set{N}$ be fixed with $\beta \geq 2$, and $x \in \set{R}$ with a finite number of digits $0 \leq x_k < \beta$ for $k = -m, \hdots, n$. The \textit{positional representation} of $x$ with respect to the base $\beta$ is
+$$ x_{\beta} = \sign{x}(x_{n}\beta^{n} + x_{n-1}\beta^{n-1} + \hdots + x_{1}\beta + x_{0} + x_{-1}\beta^{-1} + \hdots + x_{-m}\beta^{-m}),\ x_n \neq 0 $$
+where
+$$ \sign{x} = \left\{ \begin{matrix} 1 & \text{if}\ x > 0 \\ -1 & \text{if}\ x < 0 \end{matrix} \right. $$
+
+Another way to express real numbers is the \textit{floating-point representation}, given by:
+$$ x = \sign{x} \cdot (x_0.x_1 \hdots x_{t-1}) \cdot \beta^{e} = \sign{x} \cdot m \cdot \beta^{e-t+1} $$
+The integer number $m=x_0x_1 \hdots x_{t-1}$, $(0 \leq x_i \leq \beta-1)$ is called \textit{mantissa} and is such that $0 \leq m \leq \beta^{t}-1$. The integer number $e$ is called \textit{exponent} and $t$ is the number of digits $x_i$.
+
+A system of floating-point numbers depends on the following parameters:
+
+\begin{itemize}
+    \item $\beta$, base
+    \item \textit{t}, precision (number of  digits)
+    \item $[L, U]$, exponent range
+\end{itemize}
+
+It is denoted by
+$$ \mathcal{F}(\beta, t, L, U) = \{0\} \cup \left\{ x \in \set{R} : x = \sign{x}\beta^{e}\sum_{i=0}^{t-1}{x_i\beta^{-i}} \right\} $$
+
+To guarantee the uniqueness of the representation  and to store one  bit less, it is assumed that the leading bit is different than $0$ (i.e. $x_0 \neq 0$). This is called \textit{normalized representation}. Therefore, the mantissa is in the range $[\beta^{t-1}, \beta^{t}-1]$. 
+
+\input{examples/section-1/fps.tex}
+
+The total number of normalized floating-point numbers in the set $\mathcal{F}(\beta, t, L, U$ is:
+$$ 2(\beta -1)\beta^{t-1}(U-L+1)+1 $$
+The smallest positive normalized number is
+$$ \textrm{UFL} = \beta^{L} $$
+while the largest normalized number is
+$$ \textrm{OFL} = (\beta^{t} - 1)\beta^{U-t+1} = (1 - \beta^{-t})\beta^{U+1} $$
+
+The approximation of a real number $x$ to a floating-point number $fl(x)$ can be achieved by applying one of the following \textit{rounding rules}:
+
+\begin{itemize}
+    \item \textbf{round-by-chop}: truncate the base-$\beta$ expansion of $x$ after $t$ digits (also called round toward zero)
+    \item \textbf{round-to-nearest}: $fl(x)$ is set to the nearest floating-point number to $x$; when there is a tie, the floating-point number whose last digit is even is used
+\end{itemize}
+
+\begin{definition}
+    Accuracy of floating-point systems is characterized by the \textit{roundoff unit} (or machine precision, or machine epsilon) $\epsilon_{mach}$. When using round-by-chop we have $\epsilon_{mach} = \beta^{1-t}$, while when using round-to-nearest we have $\epsilon_{mach} = \frac{1}{2}\beta^{1-t}$.
+\end{definition}
+
+Another definition of roundoff unit is the following:
+\begin{definition}
+    The roundoff unit $\epsilon_{mach}$ is the smallest positive number satisfying:
+    $$ fl(1+\epsilon_{mach}) > 1 $$
+\end{definition}
+
+\begin{proposition}
+    The maximum relative error in representing a real number $x$ in  a floating-point system is given by
+    $$ \left| \frac{fl(x) - x}{x} \right| \leq \epsilon_{mach} $$
+\end{proposition}
+
+\begin{proof}
+    Let's define $x \in \set{R}$ as $\sign{x}(d_0.d_1d_2 \hdots d_{t-1}d_{t}d_{t+1} \hdots)\beta^{e}$ and $fl(x) = \sign{x}(d_0.d_1d_2 \hdots \tilde{d}_{t-1})\beta^{e}$. We have:
+    $$ |x - fl(x)| = |(d_{t-1}-\tilde{d}_{t-1}).d_{t} \hdots \cdot \beta^{e-t+1}| \leq \frac{1}{2}\beta^{e-t+1} $$
+    since $|d_{t-1} - \tilde{d}_{t-1}| \leq \frac{1}{2}$, and
+    $$ |x| \geq \beta^{e} $$
+    Thus,
+    $$ \left| \frac{x-fl(x)}{x} \right| \leq \frac{1}{2}\beta^{1-t} $$
+\end{proof}

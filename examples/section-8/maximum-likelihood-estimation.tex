@@ -1,0 +1,9 @@
+\begin{example}
+    Suppose $X_1, \hdots, X_n \sim \exp(\lambda)$ i.i.d. random variables with observations $(x_1, \hdots, x_n)$. We have
+    $$ L(\lambda \mid x_1, \hdots, x_n) = \prod_{i=1}^{n}{\lambda e^{-\lambda x_i}} = \lambda^n e^{-\lambda\sum_{i=1}^{n}{x_i}} $$
+    To find $\lambda$ we need to compute
+    $$ \argmax_{\lambda}\{ \lambda^n e^{-\lambda\sum_{i=1}^{n}{x_i}} \} = \argmin_{\lambda}\{ -n\ln{\lambda} + \lambda\sum_{i=1}^{n}{x_i} \} $$
+    Let's compute the derivative of $L_1(\lambda) = -n\ln{\lambda} + \lambda\sum_{i=1}^{n}{x_i}$ with respect to $\lambda$
+    $$ \frac{dL_1}{d\lambda}(\lambda) = -\frac{n}{\lambda} + \sum_{i=1}^{n}{x_i} $$
+    Thus, the value of $\lambda$ which minimizes $L_1$ is $\lambda = \frac{n}{\sum_{i=1}^{n}{x_i}}$.
+\end{example}
