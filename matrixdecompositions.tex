@@ -1,14 +1,14 @@
 
 
 Useful Linear Algebra tools are matrix factorizations (or decompositions).
-They write the matrix $\mat{A}$ as the product of  matrices. Special matrices used in the decompositions are triangular and diagonal matrices.
+They write the matrix $\mat{A}$ as the product of matrices. Special matrices used in the decompositions are triangular and diagonal matrices.
 
 We start by considering factorizations by triangular matrices.
 
-\subsection{Gaussian Elimination Method or  LU factorization}
+\subsection{Gaussian Elimination Method or LU factorization}
 
 \begin{definition}
-    Let $\mat{A} \in \set{R}^{n \times n}$. If $\mat{A}$ is non singular and all the principal submatrices $A_i, i=1 \ldots n-1$ are non singular, then  there exists two  matrices $\mat{L}$ and $\mat{U}$, with $\mat{L}$ lower triangular with $l_{ii}=1, i=1, \ldots n$ and $\mat{U}$ upper triangular non singular, such that:
+    Let $\mat{A} \in \set{R}^{n \times n}$. If $\mat{A}$ is non singular and all the principal submatrices $A_i, i=1 \ldots n-1$ are non singular, then there exists two matrices $\mat{L}$ and $\mat{U}$, with $\mat{L}$ lower triangular with $l_{ii}=1, i=1, \ldots n$ and $\mat{U}$ upper triangular non singular, such that:
     $$ \mat{A} = \mat{L}\mat{U} $$
     We call this an $\mat{LU}$\textit{-factorization} of $\mat{A}$.
 \end{definition}
@@ -183,7 +183,7 @@ where $\mat{P}$ is a non singular matrix of size $n \times n$ and $\mat{D}$ is a
 
 Example 4.11 MML book.
 
-\textbf{Observation.}  The eigenvalue decomposition can be applied only to square matrices and with particular properties on their spectrum.
+\textbf{Observation.} The eigenvalue decomposition can be applied only to square matrices and with particular properties on their spectrum.
 
 We now introduce the Singulas Value Decomposition (SVD) which can be applied to \textbf{all} the matrices.
 We first need some definitions and concepts on \textit{orthogonality}. 
@@ -236,13 +236,13 @@ Transformations by orthogonal matrices preserve both length and angles.
 We present the SVD in the case $m ]\geq n$ but it can be easily extended to the case $m<n$ (see for example MML book).
 \begin{proposition}
 \textit{singular value decomposition} (SVD).
-Any matrix $\mat{A} \in \set{R}^{m \times n},\ m \geq  n$ with $\rank{A} = k,\ k \leq n$ can be written as
+Any matrix $\mat{A} \in \set{R}^{m \times n},\ m \geq n$ with $\rank{A} = k,\ k \leq n$ can be written as
 $$ \mat{A} = \mat{U}\mat{\Sigma}\transp{V} $$
 where
 \begin{itemize}
-    \item $\mat{U} \in \set{R}^{m \times m}$ is an orthogonal matrix  with orthogonal vectors $\vec{u}_i$
+    \item $\mat{U} \in \set{R}^{m \times m}$ is an orthogonal matrix with orthogonal vectors $\vec{u}_i$
     \item $\mat{V} \in \set{R}^{n \times n}$ is an orthogonal matrix with orthogonal vectors $\vec{v}_i$
-    \item $\Sigma \in \set{R}^{m \times n}$ is a  matrix whose diagonal entries are the \textit{singular values} $\sigma_i$ of $\mat{A}$ and with extra-diagonal entries equal to 0.
+    \item $\Sigma \in \set{R}^{m \times n}$ is a matrix whose diagonal entries are the \textit{singular values} $\sigma_i$ of $\mat{A}$ and with extra-diagonal entries equal to 0.
 \end{itemize}
 \end{proposition}
 
@@ -254,13 +254,13 @@ where
 
 \includegraphics[width=0.5 \textwidth]{sections/images/svd1.png}
 
-From the geometric point of view, the SVD performs two changes of basis, via the orthogonal matrices $\mat{U}$ and $\mat{V}$ and a scaling operation via the matrix $\Sigma$. The columns of $\mat{U}$ and $\mat{V}$ are sets of orthonormal basis of $\mathbf{R}^m$ and  $\mathbf{R}^n$, respectively. See Example 4.12 MML book, page 121.
+From the geometric point of view, the SVD performs two changes of basis, via the orthogonal matrices $\mat{U}$ and $\mat{V}$ and a scaling operation via the matrix $\Sigma$. The columns of $\mat{U}$ and $\mat{V}$ are sets of orthonormal basis of $\mathbf{R}^m$ and $\mathbf{R}^n$, respectively. See Example 4.12 MML book, page 121.
 
 \textit{Results}
 \begin{itemize}
 \item Since the following relation holds:
 $$\mat{A}\vec{v}_i=\sigma_i \vec{u}_i,\ i = 1, \ldots, n$$
-$\vec{v}_i$ are called \textit{right singular vectors} and $\vec{u}_i$  are called \textit{left singular vectors}.
+$\vec{v}_i$ are called \textit{right singular vectors} and $\vec{u}_i$ are called \textit{left singular vectors}.
 \item 
 We have the following relation between the singular values of $\mat{A}$ and the eigenvalues of $\mat{A^T A}$.
 $$\mat{A^T A}=(\mat{U \Sigma V^T})^T(\mat{U \Sigma V^T})=\mat{V \Sigma ^T U^T U \Sigma V^T}$$

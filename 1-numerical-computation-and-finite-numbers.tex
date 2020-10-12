@@ -1,6 +1,6 @@
 Without going into details, we define \textit{numerical method} a mathematical tool which can be implemented on a computer and designed to solve numerical problems. The implementation of a numerical method is called a \textit{numerical algorithm}, or simply \textit{algorithm}.
 
-When working with numerical methods and algorithms  we go through  approximations and errors which we can classify in the following way:
+When working with numerical methods and algorithms we go through approximations and errors which we can classify in the following way:
 
 \begin{itemize}
     \item \textit{measure errors}, caused by the measuring instrument;
@@ -41,7 +41,7 @@ Suppose we want to compute the value of a function $f: \set{R} \rightarrow \set{
 
 Then we define the \textit{total error} as
 $$ \tilde{f}(\tilde{x}) - f(x) = \tilde{f}(\tilde{x}) - f(\tilde{x}) + f(\tilde{x}) - f(x) $$
-We call $\tilde{f}(\tilde{x}) - f(\tilde{x})$ the \textit{algorithmic error} and $f(\tilde{x}) - f(x)$ the \textit{inherent  error}. It can be seen that the choice of algorithm has no effect on the propagated data error.
+We call $\tilde{f}(\tilde{x}) - f(\tilde{x})$ the \textit{algorithmic error} and $f(\tilde{x}) - f(x)$ the \textit{inherent error}. It can be seen that the choice of algorithm has no effect on the propagated data error.
 
 % In light of this new perspective, we can define the truncation and rounding errors.
 
@@ -66,14 +66,14 @@ A system of floating-point numbers depends on the following parameters:
 
 \begin{itemize}
     \item $\beta$, base
-    \item \textit{t}, precision (number of  digits)
+    \item \textit{t}, precision (number of digits)
     \item $[L, U]$, exponent range
 \end{itemize}
 
 It is denoted by
 $$ \mathcal{F}(\beta, t, L, U) = \{0\} \cup \left\{ x \in \set{R} : x = \sign{x}\beta^{e}\sum_{i=0}^{t-1}{x_i\beta^{-i}} \right\} $$
 
-To guarantee the uniqueness of the representation  and to store one  bit less, it is assumed that the leading bit is different than $0$ (i.e. $x_0 \neq 0$). This is called \textit{normalized representation}. Therefore, the mantissa is in the range $[\beta^{t-1}, \beta^{t}-1]$. 
+To guarantee the uniqueness of the representation and to store one bit less, it is assumed that the leading bit is different than $0$ (i.e. $x_0 \neq 0$). This is called \textit{normalized representation}. Therefore, the mantissa is in the range $[\beta^{t-1}, \beta^{t}-1]$. 
 
 \input{examples/section-1/fps.tex}
 
@@ -102,7 +102,7 @@ Another definition of roundoff unit is the following:
 \end{definition}
 
 \begin{proposition}
-    The maximum relative error in representing a real number $x$ in  a floating-point system is given by
+    The maximum relative error in representing a real number $x$ in a floating-point system is given by
     $$ \left| \frac{fl(x) - x}{x} \right| \leq \epsilon_{mach} $$
 \end{proposition}
 

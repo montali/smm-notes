@@ -2,7 +2,7 @@
 
 A linear system can be written as
 $$ \mat{A}\vec{x} = \vec{b} $$
-where $\mat{A}$ is a  matrix of size $m \times n$ (we suppose $m \geq n$) and $\vec{x}$ is a coulumn  vector of length $n$  and $\vec{b}$ is  a column vectors of length $m$. $\vec{x}$ represents the unknown solution while $\vec{b}$ is a given vector. This form can be expanded as
+where $\mat{A}$ is a matrix of size $m \times n$ (we suppose $m \geq n$) and $\vec{x}$ is a coulumn vector of length $n$ and $\vec{b}$ is a column vectors of length $m$. $\vec{x}$ represents the unknown solution while $\vec{b}$ is a given vector. This form can be expanded as
 $$
     \begin{matrix}
         a_{11}x_1 + a_{12}x_2 + \hdots + a_{1n}x_n = b_1\\
@@ -20,7 +20,7 @@ We are interested in:
     \item Conditioning of the problem
 \end{itemize}
 
-We separately consider the case of square linear systems ($m=n$) and leasst squares problem ($m>n$).
+We separately consider the case of square linear systems ($m=n$) and least squares problem ($m>n$).
 
 \subsection{Square linear systems}
 
@@ -33,7 +33,7 @@ We separately consider the case of square linear systems ($m=n$) and leasst squa
     \begin{itemize}
         \item $\mat{A}$ is non-singular
         \item $\rank{A} = n$
-           \item  The system $\mat{A}\vec{x} = \vec{0}$ admits only the solution $\vec{x} = \vec{0}$
+           \item The system $\mat{A}\vec{x} = \vec{0}$ admits only the solution $\vec{x} = \vec{0}$
     \end{itemize}
 
 \end{proposition}
@@ -55,16 +55,16 @@ We will consider two different approaches to find the solution of a linear syste
     \item \textit{iterative methods}. They require (in principle) an infinite number of steps; they are less precise and less expensive
 \end{itemize}
 
-It is very important to perform also an error analysis on the  obtained results.  It generally includes two parts:
+It is very important to also perform an error analysis on the obtained results. It generally includes two parts:
 \begin{itemize}
     \item \em{Rounding} or \em{arithmetic errors}. They depend on the algorithm steps. An algorithm producing an arithmetic error limited by a constant is called a \textbf{stable algorithm}.
-    \item \textit{Inherent errors}. They are due to the errors in the data representation and the DO NOT depend on the algorithm. For this reason, if the inherent error is large,we speak about  \textbf{ill-posed problem}.
+    \item \textit{Inherent errors}. They are due to the errors in the data representation and the DO NOT depend on the algorithm. For this reason, if the inherent error is large,we speak about \textbf{ill-posed problem}.
 \end{itemize}
 
 \subsection{Direct methods}
 
 In the case of direct methods we factorize the matrix A as in section \ref{sec:matdecomp}.
-Let $\mat{A}=\mat{L} \mat{U}$  , then 
+Let $\mat{A}=\mat{L} \mat{U}$, then 
  the solution of the linear system $\mat{A}\vec{x} = \vec{b}$ can be computed by solving two triangular systems
 $$
     \begin{matrix}
@@ -81,7 +81,7 @@ $$
 
 \includegraphics[width=0.7 \textwidth]{sections/images/backsub.png}
 
-In the case of pivoting algorithm, we have that  $\mat{P} \mat{A}=\mat{L} \mat{U}$. Then 
+In the case of pivoting algorithm, we have that $\mat{P} \mat{A}=\mat{L} \mat{U}$. Then 
  the solution of the linear system $\mat{P} \mat{A}\vec{x} = \mat{P} \vec{b}$ can be computed by solving two triangular systems
 $$
     \begin{matrix}
@@ -95,7 +95,7 @@ $$
 Iterative methods are numerical methods that approximate a solution using a procedure involving several (or an infinite amount of) steps. 
 %Each iteration requires $n^2$ multiplications, meaning that these methods have a computational cost of $\mathrm{O}(n^2)$.
 
-The basic idea of iterative methods is to construct a sequence of vectors $\vec{x}_k$  enjoying the property of \textit{convergence}
+The basic idea of iterative methods is to construct a sequence of vectors $\vec{x}_k$ enjoying the property of \textit{convergence}
 $$ \vec{x}^* = \lim_{k \rightarrow \inf}{\vec{x}_k} $$
 where $\vec{x}^*$ is the exact solution and the starting guess $\vec{x}_0$ is given.
 
@@ -120,7 +120,7 @@ Examples of iterative methods (the most common):
     then the method is called \textit{Conjugate Gradients}.
 \end{itemize}
 
-All these methods require one matrix-vector multiplication per iteration. Hence, if $\mat{A}$ is a \textit{full} matrix the computational complexity is $O(n^2)$  per iteration.
+All these methods require one matrix-vector multiplication per iteration. Hence, if $\mat{A}$ is a \textit{full} matrix the computational complexity is $O(n^2)$ per iteration.
 
 Stopping criteria for iterative methods for linear systems are:
 \begin{itemize}
@@ -137,7 +137,7 @@ A matrix $\mat{A}$ is called \textit{sparse} if it has a very small percentage (
 
 
 \subsection{Inherent errors in linear systems}
-WE remind that inherent errors are due to the errors in the data representation. They \textbf{do not} depend on the algorithm used for computing the result. Really, the analysis of inherent errors is performed by supposing to use exact arithmetic to  compute the result. 
+WE remind that inherent errors are due to the errors in the data representation. They \textbf{do not} depend on the algorithm used for computing the result. Really, the analysis of inherent errors is performed by supposing to use exact arithmetic to compute the result. 
 
 Consider now a linear system $\mat{A}\vec{x} = \vec{b}$. What happens to the solution $\vec{x}$ when $\mat{A}$ and/or $\vec{b}$ slightly change (e.g. due to machine precision)?
 
@@ -184,7 +184,7 @@ Projections are an important class of linear transformations. In machine learnin
 \includegraphics[width=0.7 \textwidth]{sections/images/orth2.png}
 
 \begin{itemize}
-    \item The projection $z=\Pi_U(\vec{x})$ is the closest point to $\vec{x}$ of the subspace $U$ generated by $\vec{b}$  by considering as the measure of the distance the 2-norm ($\| \cdot \|_2$). The vector $\zz -\xx$ (the red dashed one in the figure) is orthogonal to the subspace $U$ (and to the vector $\bb$ generating $U$). Hence, the scalar product: $<\vec{z}-\vec{x},\vec{b}>=0$
+    \item The projection $z=\Pi_U(\vec{x})$ is the closest point to $\vec{x}$ of the subspace $U$ generated by $\vec{b}$ by considering as the measure of the distance the 2-norm ($\| \cdot \|_2$). The vector $\zz -\xx$ (the red dashed one in the figure) is orthogonal to the subspace $U$ (and to the vector $\bb$ generating $U$). Hence, the scalar product: $<\vec{z}-\vec{x},\vec{b}>=0$
     \item The vector $\vec{z}$ is a vector of the subspace generated by $\vec{b}$, hence $\vec{z}=\alpha \vec{b}$, $\alpha \in \mathbf{R}.$
   
 \end{itemize}
@@ -236,7 +236,7 @@ two different cases are possible:
     $$ \mat{A}\vec{x} = \vec{b} \implies \mat{A}^{+}\mat{A}\vec{x^{*}} = \mat{A}^{+}\vec{b} \implies \vec{x^{*}} = \mat{A}^{+}\vec{b} \implies \vec{x^{*}} = \sum_{i=1}^{k}{\frac{\transp{\vec{u}_i}\vec{b}}{\sigma_i}\vec{v}_i} $$
 \end{itemize}
 
-It is possible to modify the linear least squares problem \eqref{llsq}  by introducing a weight matrix with the aim to give different weights to the components of $\xx$. 
+It is possible to modify the linear least squares problem \eqref{llsq} by introducing a weight matrix with the aim to give different weights to the components of $\xx$. 
 \begin{equation}
    \hat{\xx}= argmin_x \|\vec{W} \AA \xx-\bb\|_2^2
    \label{wllsq}
