@@ -149,7 +149,7 @@ In order to evaluate how fast the algorithm approximates the solution and to com
 
  Let $\vec P{x}_k$ be a sequence converging to $\vec{x}^*$.
 \begin{itemize}
-    \item \textbf{Q-linear}  if it exists $r \in (0,1)$:
+    \item \textbf{Q-linear} if it exists $r \in (0,1)$:
     $$\frac{\|\vec{x}_{k+1}-\vec{x}^*\|}{\|\vec{x}_{k}-\vec{x}^*\|} \leq r, \ \ \forall k > k^*$$
     Hence the distance from the solution decreases at each iteration of a constant factor.
     \item \textbf{Q-superlinear} if 
@@ -188,13 +188,13 @@ The choice of $\vec{p}_k$ corresponds to different methods.
 We observe that the choice of $\alpha_k$ so that:
 $$f(\xx_{k+1})<f(\xx_k)$$ 
 \textbf{doesn't guarantee the convergence of the method}.\\
-Hence the choice of the step size is very important in a gradient descent method. If the step size is too small, the descent can be too slow. However, if the step size is too large, the method fails to converge. The step size is then usually chosen by a \textit{line search} algorithm implemented with a backtracking algorithm, where an iterative procedure decreases the value of the step size $\alpha$ until suitable conditions for the convergence of the method are satisfied. The method is called \textit{line search}  since the new iterate $\xx_{k+1}$ is searched along the line $p_k$.
+Hence the choice of the step size is very important in a gradient descent method. If the step size is too small, the descent can be too slow. However, if the step size is too large, the method fails to converge. The step size is then usually chosen by a \textit{line search} algorithm implemented with a backtracking algorithm, where an iterative procedure decreases the value of the step size $\alpha$ until suitable conditions for the convergence of the method are satisfied. The method is called \textit{line search} since the new iterate $\xx_{k+1}$ is searched along the line $p_k$.
 
 \begin{itemize}
-    \item \textit{Exact line search}.  $\alpha_k$ is chosen as the minimum of the function
+    \item \textit{Exact line search}. $\alpha_k$ is chosen as the minimum of the function
     $$\Phi: R \longrightarrow R, \ \ \Phi(\alpha)=f(\xx_k+\alpha \vec{p}, \ \ \alpha \geq 0$$
     It is not the best way of choosing $\alpha_k$ in terms of converge speed of the algorithm.
-    \item \textit{inexact line search}. $\alpha_k$ is chosen to belong to intervals  where the algorithm convergence is guaranteed. The most common conditions which guarantees the convergence are the \textbf{Wolfe} conditions. 
+    \item \textit{inexact line search}. $\alpha_k$ is chosen to belong to intervals where the algorithm convergence is guaranteed. The most common conditions which guarantees the convergence are the \textbf{Wolfe} conditions. 
     
     \includegraphics[width=0.7 \textwidth]{sections/images/opt5.png}
     
@@ -203,7 +203,7 @@ Hence the choice of the step size is very important in a gradient descent method
     The first condition (Armijo condition) prevents ensures that $\alpha_k$ is not too large but it allows $\alpha_k$ to be too small. In this case the algorithm becomes very slow.\\
     The second condition (curvature condition) is a \textit{sufficient displacement} condition, preventing $\alpha_k$ from being too small.
     
-    Since the curvature condition is computationally expensive, we can prove that the convergence is guaranteed if we apply a \textit{backtracking} algorithm that progressively reduces a starting values of $]\alpha$  usually set at one until the Armijo condition is satisfied.  In the algorithm, a check condition ensures that $\alpha_k$ becomes not too small. In that case, the descent method is interrupted without convergence.
+    Since the curvature condition is computationally expensive, we can prove that the convergence is guaranteed if we apply a \textit{backtracking} algorithm that progressively reduces a starting values of $]\alpha$ usually set at one until the Armijo condition is satisfied. In the algorithm, a check condition ensures that $\alpha_k$ becomes not too small. In that case, the descent method is interrupted without convergence.
     
      \includegraphics[width=0.7 \textwidth]{sections/images/opt6.png}
 \end{itemize}
@@ -244,7 +244,7 @@ $$ \mat{H}_f(\vec{x}_k)\vec{p}_k = \nabla{f}(\vec{x}_k) $$
     \item $\vec{p}_k$ is a decsent direction only if $\mat{H}_f$ is positive definite.
     \item The convergence properties are strictly realated to the Hessian matrix.
     \begin{proposition}
-        If $f \in C^2(\Omega)$  and $\mat{H}_f$ is a Liptschiz function around $\xx^*$, i.e.
+        If $f \in C^2(\Omega)$ and $\mat{H}_f$ is a Liptschiz function around $\xx^*$, i.e.
         $$|f(\xx) -f(\vec{y})| \leq K \|\xx-\vec{y} \|$$
         and $\mat{H}_f$ is positive definite then:
       if $\xx_0$ is near a stationary point $\xx^*$, then the sequence $\xx_k$ converges quadratically.
@@ -286,7 +286,7 @@ $$ (\transp{\mat{A}}\mat{A})\vec{x} = \transp{\mat{A}}\vec{b} $$
 
 A strictly convex function frequently encountered in applications is the quadratic function:
 $$f(\xx)=\frac{1}{2} \xx^T Q \xx + \vec{b} ^T \xx$$
-where $Q$ is a square matrix of size $n \times n$ symmetric and positive definite, $\vec{b}  \in \mathbf{R}^n$.
+where $Q$ is a square matrix of size $n \times n$ symmetric and positive definite, $\vec{b} \in \mathbf{R}^n$.
 
 In this particular case we have:
 $$\nabla f(\xx)=Q \xx- \vec{b} \ \ \nabla^2 f(\xx)=A$$
@@ -318,7 +318,7 @@ $$\vec{p}_i^T Q \vec{p}_j=0, \ \ if i \neq j$$
 
 \includegraphics[width=0.6 \textwidth]{sections/images/opt9.png}
    
-The \textit{Conjugate Gradient }  (CG) algorithm is a very fast iterative algorithm for the minimization of a quadratic function (i.e. an iterative method for the solution of a linear system $Q\xx=\bb$ with $Q$ symmetric and positive definite).
+The \textit{Conjugate Gradient } (CG) algorithm is a very fast iterative algorithm for the minimization of a quadratic function (i.e. an iterative method for the solution of a linear system $Q\xx=\bb$ with $Q$ symmetric and positive definite).
 It can be described by the following instructions:
 
 \includegraphics[width=0.6 \textwidth]{sections/images/opt10.png}
@@ -342,10 +342,10 @@ Hence the CG method is quite faster then the Gradient descent method.
 \includegraphics[width=0.6 \textwidth]{sections/images/opt15.png}
 
 \subsection{Stochastic optimization}
-The objective function in some ML  problems is related to probabilistic events and it can take the following form
+The objective function in some ML problems is related to probabilistic events and it can take the following form
 $$ G(\vec{x}) = \sum_{i = 1}^{n}{G_i(\vec{x})} $$
-with $G: \set{R}^n \rightarrow \set{R}$. Each $G_i$ is the so called \textit{loss function}  associated with the $i$-th observation in the dataset.
-For example in a supervised classification problem we minimize the \textit{empirical risk function} $R_n:\mathbf{R}^d  \longrightarrow \mathbf{R}$ defined as the sum of loss functions $l, \ i=1, \ldots n$ for all the examples $x_i$:
+with $G: \set{R}^n \rightarrow \set{R}$. Each $G_i$ is the so called \textit{loss function} associated with the $i$-th observation in the dataset.
+For example in a supervised classification problem we minimize the \textit{empirical risk function} $R_n:\mathbf{R}^d \longrightarrow \mathbf{R}$ defined as the sum of loss functions $l, \ i=1, \ldots n$ for all the examples $x_i$:
 $$R_n(\vec{w})=\frac{1}{n} \sum_{i=1}^n l(h_(x_i,\vec{w}))$$
 where the loss function $l$ is related to the probability distribution of the examples $x_i$.
 
@@ -357,7 +357,7 @@ $$
         &= \vec{x}_k - \alpha_k\sum_{i=1}^{n}{\nabla{G_i}(\vec{x}_k)}
     \end{aligned}
 $$
-When there are millions of examples, it is very expensive  to compute the gradient $\nabla G(\xx)$.
+When there are millions of examples, it is very expensive to compute the gradient $\nabla G(\xx)$.
 
 In \textit{stochastic gradient descent} the true gradient $\nabla{G}(\vec{x}_k)$ is approximated at each iteration by the gradient at a single observation $\nabla{G_i}(\vec{x}_k)$, with $i = 1, \hdots, n$ randomly picked. The iteration step becomes
 $$ \vec{x}_{k+1} = \vec{x}_k - \alpha_k\nabla{G_i}(\vec{x}_k) $$
@@ -376,8 +376,8 @@ Since in ML we do not need a very precise localization of the minimum of the fun
 
 \includegraphics[width=0.6 \textwidth]{sections/images/opt11.png}
 
-In a similar way, other optimization algorithms, such as Newton-like methods , can be implemented with a stochastic (or mini-batch)  gradient computation.
-More details can be found  in \textit{Optimization for large scale machine learning, Siam Review, vol. 60, n.2, pag. 223-311, 2018}, where some convergence results are presented in the case of strictly convex functions.
+In a similar way, other optimization algorithms, such as Newton-like methods , can be implemented with a stochastic (or mini-batch) gradient computation.
+More details can be found in \textit{Optimization for large scale machine learning, Siam Review, vol. 60, n.2, pag. 223-311, 2018}, where some convergence results are presented in the case of strictly convex functions.
 
 \subsection{Non-linear least squares problem}
 In non-linear least squares problems we have residuals defined as $\vec{r}: \set{R}^n \rightarrow \set{R}^m$, where $n$ is the dimension of the space of the data and $m$ is the dimension of the space of the unknowns. Each $r_i(\vec{x})$ is a non-linear function and the minimization of the residuals can be written as

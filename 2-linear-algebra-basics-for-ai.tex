@@ -40,7 +40,7 @@
 \subsubsection{Linear independence}
 
 \begin{definition}
-    Given a vector space $V$ over $F$, the set $W$ of all finite linear combinations of vectors $\{\vec{v}_1, \hdots, \vec{v}_m\},\ \vec{v}_i \in V$, is called the \textit{subspace spanned by  $\{\vec{v}_1, \hdots, \vec{v}_m\},\ \vec{v}_i$}  and it is written as
+    Given a vector space $V$ over $F$, the set $W$ of all finite linear combinations of vectors $\{\vec{v}_1, \hdots, \vec{v}_m\},\ \vec{v}_i \in V$, is called the \textit{subspace spanned by $\{\vec{v}_1, \hdots, \vec{v}_m\},\ \vec{v}_i$} and it is written as
     $$ W = \text{span}\{\vec{v}_1, \hdots, \vec{v}_m\} = \left\{ \left.\sum_{i=1}^{m}{\alpha_i\vec{v}_i} \ \right\vert \vec{v}_i \in V,\ \alpha_i \in F \right\} $$
     The system $\{\vec{v}_1, \hdots, \vec{v}_m\}$ is called a \textit{system of generators} for $V$.
 \end{definition}
@@ -89,7 +89,7 @@ We can write the above matrix as $A(m \times n)$ or $A = (a_{ij})$, $i = 1, \hdo
 \end{definition}
 
 \begin{definition}
-    A \textit{lower triangular matrix} is a  matrix $\mat{L}$ where $l_{ij} = 0$ if $i < j$. An \textit{upper triangular matrix} is a  matrix $\mat{U}$ where $u_{ij} = 0$ if $i > j$.
+    A \textit{lower triangular matrix} is a matrix $\mat{L}$ where $l_{ij} = 0$ if $i < j$. An \textit{upper triangular matrix} is a matrix $\mat{U}$ where $u_{ij} = 0$ if $i > j$.
     $$
         \mat{L} = \left[\begin{matrix}
         l_{11} & 0 & \cdots & 0 \\
@@ -134,7 +134,7 @@ Let $\mat{A} \in \set(R)^{m \times p}$, $\mat{B} \in \set(R)^{m \times p}$, $\ma
 \end{definition}
 
 \begin{definition}
-    We call \textit{identity matrix of order $n$} the square matrix of size $(n, n)$ given by $\mat{I}_n = \diag{\vec{1}}$. Usually,  we write the identity matrix as $\mat{I}$.
+    We call \textit{identity matrix of order $n$} the square matrix of size $(n, n)$ given by $\mat{I}_n = \diag{\vec{1}}$. Usually, we write the identity matrix as $\mat{I}$.
     $$
         \mat{I} = \left[\begin{matrix}
         1 & 0 & \cdots & 0 \\
@@ -229,7 +229,7 @@ Let a square matrix $\mat{A}$ have an eigenvalue $\lambda_i$. The algebraic mult
 \end{definition}
 
 \begin{definition}
-    The maximum  eigenvalue in module of a matrix $\mat{A} \in \set{C}^{n \times n}$ is called the \textit{spectral radius} of $\mat{A}$ and is denoted by
+    The maximum eigenvalue in module of a matrix $\mat{A} \in \set{C}^{n \times n}$ is called the \textit{spectral radius} of $\mat{A}$ and is denoted by
     $$ \rho(\mat{A}) = \max_{\lambda \in \sigma(\mat{A})}{\left\vert \lambda \right\vert} $$
 \end{definition}
 
@@ -294,7 +294,7 @@ Example 4.5 in MML.
 
 \input{examples/section-2/vec-norm-infinity.tex}
 \begin{definition}
-    Two norms $\|{\cdot}\|_p $ and $\|{\cdot}\|_q $ are said \textit{equivalent} if there exists tow positive constants $c_{pq}$ and $C_{pq}$:
+    Two norms $\|{\cdot}\|_p $ and $\|{\cdot}\|_q $ are said \textit{equivalent} if two positive constants $c_{pq}$ and $C_{pq}$, defined as follows, exist:
     $$c_{pq} \|\vec{x}\|_q\leq \|\vec{x}\|_p \leq C_{pq}\|\vec{x}\|_q \forall \vec{x} \in V$$
 \end{definition}
 

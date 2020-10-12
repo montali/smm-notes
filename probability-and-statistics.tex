@@ -18,7 +18,7 @@ The frequentist interpretation considers the frequency of events of interest wit
     The \textit{sample space} is the set of all possible results of a random experiment.
 \end{definition}
 
-Examples. Toss of a coin, roll of a die, drawing a card form a deck  or extraction of ball from an urn.
+Examples. Toss of a coin, roll of a die, drawing a card form a deck or extraction of ball from an urn.
 
 \begin{definition}
     An \textit{event} is a collection of results. It is also defined as a subset of the sample space.
@@ -94,7 +94,7 @@ of events occurring.
 Examples. 
 \begin{enumerate}
 \item Toss a coin twice. The sample space is $S=\{HH, CH, HC, CC\}$. Consider the random variable $X=\{number of C\}$. Determine the values of X and its target space.
-\item  Repeat the Roll of a die  until you get 6. Consider the random variable $Y=\{ number of rolls \}$.
+\item Repeat the Roll of a die until you get 6. Consider the random variable $Y=\{ number of rolls \}$.
 Determine the values of Y and its target space.
 \item Monitor the arrival of a client in a bank. Consider $Z=\{ Time before the arrival of the client \}$.Determine the values of Z and its target space.
 
@@ -104,7 +104,7 @@ If the target space (support) (case of X and Y) is a countable set then the rand
 
 If the target space (support) (case of Z) is a non countable set then the random variable is called \textit{continuous}.
 
-Associated to the random variables we have  probability functions which describe how the probability of events id distributed. We call \textit{univariate} distribution when we consider the distribution of  a single random variable and \textit{multivariate} distribution when we have more than one random variable.
+Associated to the random variables we have probability functions which describe how the probability of events id distributed. We call \textit{univariate} distribution when we consider the distribution of a single random variable and \textit{multivariate} distribution when we have more than one random variable.
 
 \subsubsection{Discrete random variables and probability mass function}
 
@@ -158,13 +158,13 @@ We also write $f_{XY}$ as $p(x,y)$.
     $$ p_Y(y) = \sum_{x \in S_X}{P(X = x, Y = y)} $$
 \end{definition}
 
-We observe that the marginal probability consider only one  RV at a time.
+We observe that the marginal probability consider only one RV at a time.
 
 Example 6.2 MML
 
 \subsubsection{Continuous random variables}
 
-Each continuous  random variable has a function associated to itself, called \textit{probability density function} (PDF) $p(x)$ satisfying:
+Each continuous random variable has a function associated to itself, called \textit{probability density function} (PDF) $p(x)$ satisfying:
 $$ P(a \leq X \leq b) = \int_{a}^{b}{p_X(x)dx},\ \forall[a, b] \in S_X $$
 and 
 $$\int_a^b p(x)dx=1$$
@@ -182,7 +182,7 @@ $$\int_a^b p(x)dx=1$$
  %   $$ \sigma^2 = \mathbb{E}[(X - \mu)^2] = \int_{x \in S_X}{(x - \mu)^2f_X(x)} = \mathbb{E}[X^2] - \mathbb{E}^2[X] $$
 %\end{definition}
 
-Some examples of probability density  functions (PDF) are:
+Some examples of probability density functions (PDF) are:
 
 \begin{itemize}
     \item the \textit{normal distribution} (or \textit{Gaussian distribution})
@@ -197,12 +197,12 @@ Some examples of probability density  functions (PDF) are:
 \subsection{Bayes' theorem}
 
 \begin{definition}
-   Given X and Y rv, let  consider the instances $X=x$. We define \textit{conditional probability of y given x} and we write $p(y|x)$ the fraction of instances for which $Y=y$.
+   Given X and Y rv, let consider the instances $X=x$. We define \textit{conditional probability of y given x} and we write $p(y|x)$ the fraction of instances for which $Y=y$.
 \end{definition}
 
 \textbf{SUM rule.}
 
-WE show the sum rule for  discrete rv. In the case of continuous rv the sum is substituted by the  integral.
+WE show the sum rule for discrete rv. In the case of continuous rv the sum is substituted by the integral.
 
 \begin{proposition}
 Let $x$ and $y$ be discrete rv. Then:
@@ -246,7 +246,7 @@ What's the meaning of the terms involved in the Bayes' theorem?
     \item The \textbf{prior} represents knowledge about the discrete probability distribution of $x$, which is the latent variable we want to discern about. The choice of the prior depends on the information we can know about $x$ a priori.
     \item The \textbf{likelihood} is the probability of the observed rv $y$ given $x$. It is a distribution in $y$. We usually call it \textit{the probability of y given x}.
     \item The \textbf{posterior} is what we want to know in the Bayesian statistic. It represents what we know of $x$ having observed $y$.
-    \item The \textbf{evidence} is the known probability of the observed  $y$.
+    \item The \textbf{evidence} is the known probability of the observed $y$.
 \end{itemize}
 
 As we said, we are interested in the posterior. But often is very difficult to know exactly the posterior, hence we consider only some statistic of the posterior, such as its mean or maximum. This causes loss of information. Some ML algorithms aim at finding the posterior distribution.
